@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtilityForStudyNameSpace;
+
 
 namespace HW2_6
 {
@@ -22,8 +24,11 @@ namespace HW2_6
         static int SumOfNumeral(int number)
         {
             int sum = 0;
-            for (; number > 0; number /= 10)
+            while (number > 0)
+            {
                 sum += number % 10;
+                number /= 10;
+            }
             return sum;
         }
 
@@ -45,7 +50,7 @@ namespace HW2_6
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var specFunc = new FunctionsForStudy();
+            var specFunc = new  UtilityForStudy();
             var startTime = DateTime.Now;
             int cnt = 0;
 
@@ -61,68 +66,6 @@ namespace HW2_6
 
             Console.WriteLine(string.Format("Количество хороших чисел: {0}\nВремя выполнения: {1}", cnt, endTime - startTime));
             specFunc.Pause();
-        }
-
-        /// <summary>
-        /// Класс полезных функций
-        /// </summary>
-        class FunctionsForStudy
-        {
-            /// <summary>
-            /// Ожидания нажатие любой клавиши клавиатуры
-            /// </summary>
-            public void Pause()
-            {
-                Console.WriteLine("Press any key for exit...");
-                Console.ReadKey();
-            }
-
-            /// <summary>
-            /// Вывод в консоль сообщения по центру экрана
-            /// </summary>
-            /// <param name="msg"></param>
-            public void PrintCenter(string msg)
-            {
-                int x = Console.WindowWidth / 2, y = Console.WindowHeight / 2;
-                Console.SetCursorPosition(x, y);
-                Console.WriteLine(msg);
-            }
-
-            /// <summary>
-            /// Вывод в консоль сообщения
-            /// </summary>
-            /// <param name="msg"></param>
-            public void Print(string msg)
-            {
-                Console.Write(msg);
-            }
-
-            /// <summary>
-            /// Вывод в консоль сообщения на координаты x и y
-            /// </summary>
-            /// <param name="msg"></param>
-            /// <param name="x"></param>
-            /// <param name="y"></param>
-            public void Print(string msg, int x, int y)
-            {
-                if (x >= 0 && x < Console.WindowWidth && y >= 0 && y < Console.WindowHeight)
-                    Console.SetCursorPosition(x, y);
-                Console.WriteLine(msg);
-            }
-
-            /// <summary>
-            /// Обмен 2-ух переменных
-            /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="a"></param>
-            /// <param name="b"></param>
-            public static void Swap<T>(ref T a, ref T b)
-            {
-                T temp;
-                temp = a;
-                a = b;
-                b = temp;
-            }
         }
     }
 }

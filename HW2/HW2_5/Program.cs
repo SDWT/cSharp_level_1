@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtilityForStudyNameSpace;
+
 
 namespace HW2_5
 {
@@ -31,7 +33,11 @@ namespace HW2_5
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var specFunc = new FunctionsForStudy();
+            const double indexMassMax = 24.9;
+            const double indexMassMin = 18.6;
+
+
+            var specFunc = new  UtilityForStudy();
             Console.WriteLine("Введите массу тела в килограммах.");
             double m = double.Parse(Console.ReadLine());
             Console.WriteLine("Введите рост тела в метрах.");
@@ -40,76 +46,14 @@ namespace HW2_5
 
             double bestM = 21 * h * h;
 
-            if (im < 18.5)
-                Console.WriteLine(string.Format("Вам необходимо набрать {0:F2} кг.\nВам желательно набрать {1:F2} кг.", 18.6 * h * h - m, bestM - m));
-            else if (im > 25)
-                Console.WriteLine(string.Format("Вам необходимо похудеть на {0:F2} кг.\nВам желательно похудеть на {1:F2} кг.", m - 24.9 * h * h, m - bestM));
+            if (im < indexMassMin - 0.1)
+                Console.WriteLine(string.Format("Вам необходимо набрать {0:F2} кг.\nВам желательно набрать {1:F2} кг.", indexMassMin * h * h - m, bestM - m));
+            else if (im > indexMassMax + 0.1)
+                Console.WriteLine(string.Format("Вам необходимо похудеть на {0:F2} кг.\nВам желательно похудеть на {1:F2} кг.", m - indexMassMax * h * h, m - bestM));
             else
                 Console.WriteLine(string.Format("Вам вес находится в пределах нормы."));
 
             specFunc.Pause();
-        }
-    }
-    
-    /// <summary>
-    /// Класс полезных функций
-    /// </summary>
-    class FunctionsForStudy
-    {
-        /// <summary>
-        /// Ожидания нажатие любой клавиши клавиатуры
-        /// </summary>
-        public void Pause()
-        {
-            Console.WriteLine("Press any key for exit...");
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Вывод в консоль сообщения по центру экрана
-        /// </summary>
-        /// <param name="msg"></param>
-        public void PrintCenter(string msg)
-        {
-            int x = Console.WindowWidth / 2, y = Console.WindowHeight / 2;
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine(msg);
-        }
-
-        /// <summary>
-        /// Вывод в консоль сообщения
-        /// </summary>
-        /// <param name="msg"></param>
-        public void Print(string msg)
-        {
-            Console.Write(msg);
-        }
-
-        /// <summary>
-        /// Вывод в консоль сообщения на координаты x и y
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void Print(string msg, int x, int y)
-        {
-            if (x >= 0 && x < Console.WindowWidth && y >= 0 && y < Console.WindowHeight)
-                Console.SetCursorPosition(x, y);
-            Console.WriteLine(msg);
-        }
-
-        /// <summary>
-        /// Обмен 2-ух переменных
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        public static void Swap<T>(ref T a, ref T b)
-        {
-            T temp;
-            temp = a;
-            a = b;
-            b = temp;
         }
     }
 }
