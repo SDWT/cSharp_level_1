@@ -27,8 +27,58 @@ namespace HW4_6
         static void Main(string[] args)
         {
             var specFunc = new UtilityForStudy();
+            bool isGame = true;
 
+            
+            do
+            {
+                Console.WriteLine("Выберите:\n" +
+                    "1 - запустить викторину;\n" +
+                    "0 - выход.\n");
+                switch (Console.ReadKey(false).KeyChar)
+                {
+                    case '1':
+                        Console.Clear();
+                        Console.WriteLine(string.Format("Количество правильных ответов: {0}", StartQuiz()));
+                        specFunc.Pause();
+                        break;
+                    case '0':
+                        isGame = false;
+                        break;
+                    default:
+                        break;
+                }
+                Console.Clear();
+            } while (isGame);
             specFunc.Pause();
+        }
+
+        /// <summary>
+        /// Запуск викторины
+        /// </summary>
+        /// <returns>Возвращает количество правильных ответов</returns>
+        static int StartQuiz()
+        {
+            BaseOfGame a = new BaseOfGame();
+            if (!a.LBase)
+            {
+                Console.WriteLine("Вопросы не найдены!");
+                return 0;
+            }
+            var number = new Random();
+            int score = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Здравствуйте, это Викторина.\n" +
+                "Отвечайте на вопросы \"Верю\" или " +
+                "\"Не верю\".\n");
+                if (a.QuestionAnswer(number.Next() % a.CntQuest))
+                    score++;
+                Console.Clear();
+            }
+
+            return score;
         }
     }
 }
