@@ -132,6 +132,7 @@
             this.gameEnd.Location = new System.Drawing.Point(0, 0);
             this.gameEnd.Multiline = true;
             this.gameEnd.Name = "gameEnd";
+            this.gameEnd.ReadOnly = true;
             this.gameEnd.Size = new System.Drawing.Size(304, 153);
             this.gameEnd.TabIndex = 9;
             // 
