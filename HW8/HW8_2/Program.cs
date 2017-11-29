@@ -1,4 +1,7 @@
-﻿using System;
+﻿// 2. *Используя полученные знания и класс TrueFalse, разработать игру “Верю-Не верю”
+// Samsonov
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
