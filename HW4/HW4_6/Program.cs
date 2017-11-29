@@ -29,7 +29,6 @@ namespace HW4_6
             var specFunc = new UtilityForStudy();
             bool isGame = true;
 
-            
             do
             {
                 Console.WriteLine("Выберите:\n" +
